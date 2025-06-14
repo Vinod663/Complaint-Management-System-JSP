@@ -2,6 +2,7 @@ package com.cms.controller;
 
 import com.cms.dao.UserDao;
 import com.cms.model.User;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 
@@ -27,8 +28,13 @@ public class LoginServlet extends HttpServlet {
                     "\nYour role is " + login.getRole());
 
         } else {
-            response.setStatus(jakarta.servlet.http.HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write("Invalid username or password");
+            request.setAttribute("error", "Invalid username or password");
+            try {
+                request.getRequestDispatcher("view/login.jsp").forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            }
+
         }
     }
 }
