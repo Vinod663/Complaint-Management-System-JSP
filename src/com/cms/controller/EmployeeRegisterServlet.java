@@ -5,4 +5,5 @@ import jakarta.servlet.http.HttpServlet;
 
 @WebServlet("/employeeRegister") // URL mapping for the employee registration servlet
 public class EmployeeRegisterServlet extends HttpServlet {
+
 }
