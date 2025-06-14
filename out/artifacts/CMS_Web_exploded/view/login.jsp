@@ -28,7 +28,7 @@
 
             <div class="button-group">
                 <button type="submit">Login</button>
-                <button type="button">Sign Up</button>
+                <button type="button" onclick="window.location.href='<%= request.getContextPath() %>/view/register.jsp'">Sign Up</button>
             </div>
         </form>
 
