@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDao {
     private final DataSource dataSource;
@@ -35,5 +36,18 @@ public class UserDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public boolean registerEmployee(User employee) throws SQLException {
+        try (Connection con = dataSource.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
+            stmt.setString(1, employee.getUsername());
+            stmt.setString(2, employee.getPassword());
+            stmt.setString(3, "employee");
+            return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

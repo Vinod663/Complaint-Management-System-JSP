@@ -13,7 +13,7 @@
 
         <div class="role-badge">Employee Registration</div>
 
-        <form class="register-form" action="<%= request.getContextPath() %>/employeeRegister" method="post">
+        <form class="register-form" action="<%= request.getContextPath() %>/register-employee" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>
