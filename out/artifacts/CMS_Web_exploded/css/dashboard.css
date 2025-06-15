@@ -1,0 +1,384 @@
+/* Dashboard CSS - Complaint Management System */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+}
+
+/* Headers */
+h1 {
+    color: #333;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+h2 {
+    color: #667eea;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+h3 {
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 30px 0 20px 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+/* Form Styling */
+form {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px 20px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    outline: none;
+    font-family: inherit;
+    margin-bottom: 15px;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #667eea;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Button Styling */
+button[type="submit"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+}
+
+/* Special styling for edit and delete buttons */
+form[action*="edit-complaint"] button[type="submit"] {
+    background: linear-gradient(135deg, #17a2b8, #138496);
+    padding: 8px 16px;
+    font-size: 12px;
+    margin: 2px;
+}
+
+form[action*="edit-complaint"] button[type="submit"]:hover {
+    box-shadow: 0 5px 10px rgba(23, 162, 184, 0.3);
+}
+
+form[action*="delete-complaint"] button[type="submit"] {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    padding: 8px 16px;
+    font-size: 12px;
+    margin: 2px;
+}
+
+form[action*="delete-complaint"] button[type="submit"]:hover {
+    box-shadow: 0 5px 10px rgba(220, 53, 69, 0.3);
+}
+
+/* Logout button */
+form[action*="logout"] button[type="submit"] {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    margin-top: 20px;
+}
+
+form[action*="logout"] button[type="submit"]:hover {
+    box-shadow: 0 8px 16px rgba(231, 76, 60, 0.3);
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+table th {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    padding: 15px 12px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #e1e5e9;
+    vertical-align: top;
+}
+
+table tr:hover {
+    background: rgba(102, 126, 234, 0.05);
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status-based styling */
+table td:nth-child(4) {
+    font-weight: 600;
+}
+
+/*table tr:has(td:contains("Pending")) td:nth-child(4) {
+    color: #856404;
+    background: rgba(255, 193, 7, 0.1);
+    border-radius: 4px;
+}
+
+table tr:has(td:contains("In Progress")) td:nth-child(4) {
+    color: #004085;
+    background: rgba(0, 123, 255, 0.1);
+    border-radius: 4px;
+}
+
+table tr:has(td:contains("Resolved")) td:nth-child(4) {
+    color: #155724;
+    background: rgba(40, 167, 69, 0.1);
+    border-radius: 4px;
+}*/
+
+/* Actions column */
+table td:last-child {
+    white-space: nowrap;
+}
+
+table td em {
+    color: #6c757d;
+    font-style: italic;
+    background: #f8f9fa;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* Empty state */
+table td[colspan="7"] {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 40px 20px;
+    background: #f8f9fa;
+}
+
+/* HR Styling */
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent);
+    margin: 40px 0;
+    border-radius: 1px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    table th,
+    table td {
+        padding: 8px 6px;
+    }
+
+    input[type="text"],
+    textarea {
+        max-width: 100%;
+    }
+
+    /* Stack action buttons on mobile */
+    table td:last-child form {
+        display: block;
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Make table scrollable on very small screens */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table thead,
+    table tbody,
+    table th,
+    table td,
+    table tr {
+        display: block;
+    }
+
+    table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    table tr {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        background: #fff;
+    }
+
+    table td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+        white-space: normal;
+    }
+
+    table td:before {
+        content: attr(data-label) ": ";
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #667eea;
+    }
+}
+
+/* Floating animation */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+.dashboard-container {
+    animation: float 10s ease-in-out infinite;
+}
+
+/* Subtle hover effects */
+.dashboard-container:hover {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
