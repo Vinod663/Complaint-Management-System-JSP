@@ -81,7 +81,7 @@
                     <input type="hidden" name="id" value="<%= c.getId() %>">
                     <button type="submit">Edit</button>
                 </form>
-                <form action="<%= request.getContextPath() %>/delete-complaint" method="post" style="display:inline;">
+                <form action="<%= request.getContextPath() %>/employee-dashboard" method="post" style="display:inline;">
                     <input type="hidden" name="id" value="<%= c.getId() %>">
                     <button type="submit" onclick="return confirm('Are you sure?');">Delete</button>
                 </form>

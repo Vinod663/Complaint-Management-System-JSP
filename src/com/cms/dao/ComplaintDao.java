@@ -83,4 +83,31 @@ public class ComplaintDao {
         }
     }
 
+    public void deleteComplaint(int id) {
+        String sql = "DELETE FROM complaints WHERE id = ?";
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting complaint", e);
+        }
+    }
+
+    public boolean isComplaintOwnedByUser(int complaintId, int userId) {
+        String sql = "SELECT COUNT(*) FROM complaints WHERE id = ? AND user_id = ?";
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, complaintId);
+            stmt.setInt(2, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next() && rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error checking ownership", e);
+        }
+    }
+
+
+
 }
