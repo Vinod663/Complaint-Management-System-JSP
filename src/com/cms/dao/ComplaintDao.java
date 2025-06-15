@@ -150,6 +150,18 @@ public class ComplaintDao {
         return complaints;
     }
 
+    public boolean deleteComplaintById(int id) {
+        String sql = "DELETE FROM complaints WHERE id = ?";
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting complaint", e);
+        }
+    }
+
+
 
 
 

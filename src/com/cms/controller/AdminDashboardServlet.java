@@ -32,6 +32,12 @@ public class AdminDashboardServlet extends HttpServlet {
             return;
         }
 
+        String message = (String) req.getSession().getAttribute("message");
+        if (message != null) {
+            req.setAttribute("message", message);
+            req.getSession().removeAttribute("message");
+        }
+
         List<Complaint> allComplaints = complaintDao.getAllComplaints();
         req.setAttribute("allComplaints", allComplaints);
 
