@@ -108,6 +108,22 @@ public class ComplaintDao {
         }
     }
 
+    public void saveComplaint(Complaint complaint) {
+        String sql = "INSERT INTO complaints (user_id, title, description, status) VALUES (?, ?, ?, ?)";
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, complaint.getUserId());
+            stmt.setString(2, complaint.getTitle());
+            stmt.setString(3, complaint.getDescription());
+            stmt.setString(4, complaint.getStatus());
+            /*stmt.setString(5, complaint.getDate());*/ // mysql will set the date
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error saving complaint", e);
+        }
+    }
+
+
 
 
 }

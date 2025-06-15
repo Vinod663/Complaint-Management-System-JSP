@@ -19,6 +19,10 @@ public class Complaint {
         this.date = date;
     }
 
+    public Complaint() {
+
+    }
+
     public int getId() {
         return id;
     }
