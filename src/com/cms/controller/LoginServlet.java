@@ -26,7 +26,12 @@ public class LoginServlet extends HttpServlet {
             response.getWriter().write("Login successful"+
                     "\nWelcome " + login.getUsername() +
                     "\nYour role is " + login.getRole());
-
+            if ("admin".equals(login.getRole())) {
+                response.sendRedirect(request.getContextPath() + "/view/adminDashboard.jsp");
+            }
+            else if ("employee".equals(login.getRole())) {
+                response.sendRedirect(request.getContextPath() + "/view/employeeDashboard.jsp");
+            }
         } else {
             request.setAttribute("error", "Invalid username or password");
             try {

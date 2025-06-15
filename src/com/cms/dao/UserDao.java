@@ -46,7 +46,7 @@ public class UserDao {
             stmt.setString(3, "employee");
             return stmt.executeUpdate() > 0;
         } catch (Exception e) {
-            e.printStackTrace();
+            /*e.printStackTrace();*/
             throw e;
         }
     }
