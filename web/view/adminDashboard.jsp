@@ -53,7 +53,7 @@
         <% if (allComplaints != null && !allComplaints.isEmpty()) {
             for (Complaint c : allComplaints) { %>
         <tr>
-            <form action="<%= request.getContextPath() %>/update-complaint" method="post">
+            <form action="<%= request.getContextPath() %>/update-complaint-from-admin" method="post">
                 <td><%= c.getId() %><input type="hidden" name="id" value="<%= c.getId() %>"/></td>
                 <td><%= c.getUserId() %></td>
                 <td><%= c.getTitle() %></td>

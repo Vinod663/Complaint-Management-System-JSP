@@ -81,9 +81,9 @@
                     <input type="hidden" name="id" value="<%= c.getId() %>">
                     <button type="submit">Edit</button>
                 </form>
-                <form action="<%= request.getContextPath() %>/employee-dashboard" method="post" style="display:inline;">
+                <form action="<%= request.getContextPath() %>/employee-dashboard" method="post" style="display:inline;" >
                     <input type="hidden" name="id" value="<%= c.getId() %>">
-                    <button type="submit" onclick="return confirm('Are you sure?');">Delete</button>
+                    <button type="submit" onclick="return confirm('Are you sure?');" class="deleteComplaintBtn" style="background-color: darkred">Delete</button>
                 </form>
                 <% } else { %>
                 <em>Locked</em>

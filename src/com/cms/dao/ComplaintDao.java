@@ -162,8 +162,20 @@ public class ComplaintDao {
     }
 
 
+    public boolean updateComplaintFromAdmin(int id, String status, String remark) {
+        String sql = "UPDATE complaints SET status = ?, remark = ? WHERE id = ?";
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+            stmt.setString(1, status);
+            stmt.setString(2, remark);
+            stmt.setInt(3, id);
 
+            return stmt.executeUpdate() > 0;
 
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
