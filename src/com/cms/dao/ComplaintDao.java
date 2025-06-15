@@ -123,6 +123,34 @@ public class ComplaintDao {
         }
     }
 
+    public List<Complaint> getAllComplaints() {
+        List<Complaint> complaints = new ArrayList<>();
+        String sql = "SELECT id, user_id, title, description, status, remark, date_created FROM complaints";
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Complaint c = new Complaint();
+                c.setId(rs.getInt("id"));
+                c.setUserId(rs.getInt("user_id"));
+                c.setTitle(rs.getString("title"));
+                c.setDescription(rs.getString("description"));
+                c.setStatus(rs.getString("status"));
+                c.setRemark(rs.getString("remark"));
+                c.setDate(rs.getString("date_created")); // or use Timestamp if needed
+                complaints.add(c);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching all complaints", e);
+        }
+
+        return complaints;
+    }
+
+
 
 
 
